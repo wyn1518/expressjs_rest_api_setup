@@ -1,12 +1,12 @@
 const { StatusCodes, ReasonPhrases } = require('http-status-codes')
 const AuthService = require('./auth.service');
-
+const UserService = require('./user.service');
 
 module.exports = {
     
     test : async function(req,res){
         // await AuthService.test();
-        res.status(StatusCodes.OK).send(req.body);
+        res.status(StatusCodes.OK).send(await UserService.getAllUsers());
 
     },
 
