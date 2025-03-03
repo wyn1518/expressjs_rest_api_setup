@@ -1,14 +1,11 @@
 const { StatusCodes, ReasonPhrases } = require('http-status-codes')
 const AuthService = require('./auth.service');
 const UserService = require('./user.service');
+const createHandler = require('../utils/create-handler');
 
 module.exports = {
     
-    test : async function(req,res){
-        // await AuthService.test();
-        res.status(StatusCodes.OK).send(await UserService.getAllUsers());
-
-    },
+    test : createHandler(UserService.getAllUsers),
 
     signIn : async function(req,res){
 
@@ -19,14 +16,14 @@ module.exports = {
             res.cookie('token', token, { 
                 httpOnly: true,  // Prevent client-side access via JavaScript
                 secure: process.env.NODE_ENV === 'production', // Only send cookie over HTTPS in production
-                maxAge: 60000 * 24 // 24hrs
+                // maxAge: 60000 * 24 // 24hrs
             });
 
             return res.status(StatusCodes.OK).json({token});
         
         }   
 
-        return res.status(StatusCodes.UNAUTHORIZED).json({msg:ReasonPhrases.UNAUTHORIZED});
+        return res.sendStatus(StatusCodes.UNAUTHORIZED);
         
     },
 
@@ -34,7 +31,7 @@ module.exports = {
 
         const [user,created] = await AuthService.signUp(req.body);
 
-        if(created) res.status(StatusCodes.CREATED).send({msg:ReasonPhrases.CREATED});
+        if(created) res.sendStatus(StatusCodes.CREATED);
         else {
         
             res.status(StatusCodes.CONFLICT).json({

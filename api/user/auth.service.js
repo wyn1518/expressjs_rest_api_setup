@@ -1,5 +1,8 @@
 const User = require('./user.model');
 const  jwt = require('jsonwebtoken');
+
+
+
 module.exports = {
     test : async function(){
         // console.log(await User.findOne({where:{email:"godwinAdalla@gmail.com"}}));
@@ -38,8 +41,16 @@ module.exports = {
         const user = await User.findOne({where:{email}});
         
         if(user.authenticate(password)){
-            const accessToken = jwt.sign({...user,password:null},process.env.ACCESS_TOKEN_SECRET);
-            return accessToken;
+            
+            const accessToken = jwt.sign(
+                {...user,password:null},
+                process.env.ACCESS_TOKEN_SECRET,
+                { 
+                    expiresIn:'15s'
+                }
+            );
+
+            return accessToken ;
         }  
         
         return null;

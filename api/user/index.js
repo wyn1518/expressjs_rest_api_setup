@@ -3,7 +3,10 @@ const AuthValidation = require('./auth.validation')
 const AuthMiddleware = require('./auth.middleware');
 const router = module.exports = require('express').Router()
 
-router.get('/test',AuthMiddleware.checkToken,UserHandler.test);
+router.get('/test',UserHandler.test);
+router.post('/account/signup', AuthValidation.signUp, UserHandler.signUp);
+router.post('/account/signin', AuthValidation.signIn, UserHandler.signIn);
+
 
 // router.get('/set-session',function(req,res){
 //     req.session.visited = true;
@@ -27,7 +30,6 @@ router.get('/test',AuthMiddleware.checkToken,UserHandler.test);
 //     res.status(200).send(req.cookies);
 // })
 
-router.post('/account/signup', AuthValidation.signUp, UserHandler.signUp);
-router.post('/account/signin', AuthValidation.signIn, UserHandler.signIn);
+
 
 module.exports = router;

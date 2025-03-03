@@ -2,7 +2,7 @@ const  jwt = require('jsonwebtoken');
 const {StatusCodes,ReasonPhrases} = require('http-status-codes')
 
 module.exports = {
-    checkToken:function(req,res,next){
+    verifyToken:function(req,res,next){
         const token = req.cookies.token;
         let isTokenValid = true;
         if (token === null) {
@@ -13,7 +13,6 @@ module.exports = {
                 if (err) {
                     isTokenValid = false;
                 }
-                console.log(decoded);
                 // return res.status(StatusCodes.OK).json({msg:ReasonPhrases.OK,user:decoded});
             });
         }
