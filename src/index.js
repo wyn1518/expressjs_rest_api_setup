@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const cors = require('cors');
-const config = require('./config');
+const config = require('../config');
 
 const app = module.exports = express();
 
@@ -25,7 +25,7 @@ app.use(cookieParser("hello world"));
 // }));
 
 
-app.use('/', require('./api/user'));
+app.use('/', require('./routes/auth'));
 
 
 app.use((err, req, res, next) => {

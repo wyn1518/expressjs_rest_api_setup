@@ -1,11 +1,11 @@
-const UserHandler = require('./user.handler');
-const AuthValidation = require('./auth.validation')
-const AuthMiddleware = require('./auth.middleware');
+const AuthController = require('../controllers/auth.controller');
+const AuthMiddleware = require('../middlewares/auth.middleware');
 const router = module.exports = require('express').Router()
 
+
 router.get('/test',UserHandler.test);
-router.post('/account/signup', AuthValidation.signUp, UserHandler.signUp);
-router.post('/account/signin', AuthValidation.signIn, UserHandler.signIn);
+router.post('/signup', AuthMiddleware.signUp, AuthController.signUp);
+router.post('/signin', AuthMiddleware.signIn, AuthController.signIn);
 
 
 // router.get('/set-session',function(req,res){

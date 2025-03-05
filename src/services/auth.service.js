@@ -1,7 +1,7 @@
-const User = require('./user.model');
+
+const { StatusCodes, ReasonPhrases } = require('http-status-codes')
+const {User} = require('../db');
 const  jwt = require('jsonwebtoken');
-
-
 
 module.exports = {
     test : async function(){
@@ -29,7 +29,27 @@ module.exports = {
             },
         });
 
-        return [user,created];
+        if(created){
+            return {
+                status:StatusCodes.CREATED,
+                data:user
+            }
+        }
+
+        return {
+            status:StatusCodes.CONFLICT,
+            data:{
+                error:[
+                    {
+                        "type": "field",
+                        "value": user.email,
+                        "msg": "email already exist",
+                        "path": "email",
+                        "location": "body"
+                    }
+                ]
+            }
+        } 
     },
 
     signOut : async function({email,password}){
@@ -50,10 +70,17 @@ module.exports = {
                 }
             );
 
-            return accessToken ;
+            return {
+                status:StatusCodes.OK ,
+                data:{
+                    token:accessToken
+                }
+            };
         }  
         
-        return null;
+        return {
+            status:StatusCodes.UNAUTHORIZED,
+        };
     
     },
 
@@ -64,16 +91,7 @@ module.exports = {
             firstname,
             lastname,
         }){
-
-        const user = await User.update({
-            displayname,firstname,lastname
-        },{
-            where:{
-                id
-            }
-        });
-        
-        return null;
+        // TODO functions
 
     }
 };
