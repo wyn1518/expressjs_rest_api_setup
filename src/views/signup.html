@@ -1,0 +1,128 @@
+<%- include('ui/header.html') %>
+
+    <div class="min-h-screen flex items-center justify-center">
+        <form action="/signup" method="POST" class="w-full max-w-sm rounded-box  bg-base-100 p-6 m-2">
+            <div>
+                <h1 class="text-2xl font-bold">Signup</h1>
+                <p class="text-sm text-base-content/50 lowercase first-letter:uppercase">please type your login credential to unlock pages.</p>
+            
+            </div>
+            <div class="mt-4">
+                <div class="w-full">
+                    <%- include('ui/form/label.html',{htmlFor:'Displayname',child:'displayname'}) %>  
+                    <%- 
+                        include('ui/form/input-text.html',{
+                            name:'displayname',
+                            id:'displayname',
+                            value:_getInputValue('displayname'),
+                            error:_isNotNullOrUndefined(_getInputError('displayname')),
+                        }) 
+                    %>
+                    <% if(_isNotNullOrUndefined(_getInputError('displayname'))){ %>
+                        <%- include('ui/form/label-alt.html',{
+                            leftChild:_getInputError('displayname')
+                        }) %>
+                    <% } %>
+                </div>
+                <div class="w-full">
+                    <%- include('ui/form/label.html',{htmlFor:'firstname',child:'firstname'}) %>  
+                    <%- 
+                        include('ui/form/input-text.html',{
+                            name:'firstname',
+                            id:'firstname',
+                            value:_getInputValue('firstname'),
+                            error:_isNotNullOrUndefined(_getInputError('firstname')),
+                        }) 
+                    %>
+                    <% if(_isNotNullOrUndefined(_getInputError('firstname'))){ %>
+                        <%- include('ui/form/label-alt.html',{
+                            leftChild:_getInputError('firstname')
+                        }) %>
+                    <% } %>
+                </div>
+                <div class="w-full">
+                    <%- include('ui/form/label.html',{htmlFor:'lastname',child:'lastname'}) %>  
+                    <%- 
+                        include('ui/form/input-text.html',{
+                            name:'lastname',
+                            id:'lastname',
+                            value:_getInputValue('lastname'),
+                            error:_isNotNullOrUndefined(_getInputError('lastname')),
+                        }) 
+                    %>
+                    <% if(_isNotNullOrUndefined(_getInputError('lastname'))){ %>
+                        <%- include('ui/form/label-alt.html',{
+                            leftChild:_getInputError('lastname')
+                        }) %>
+                    <% } %>
+                </div>
+                <div class="w-full">
+                    <%- include('ui/form/label.html',{htmlFor:'email',child:'email'}) %>  
+                    <%- 
+                        include('ui/form/input-text.html',{
+                            placeholder:'input email',
+                            name:'email',
+                            id:'email',
+                            value:_getInputValue('email'),
+                            error:_isNotNullOrUndefined(_getInputError('email')),
+                        }) 
+                    %>
+                    <% if(_isNotNullOrUndefined(_getInputError('email'))){ %>
+                        <%- include('ui/form/label-alt.html',{
+                            leftChild:_getInputError('email')
+                        }) %>
+                    <% } %>
+                </div>
+                <div class="w-full">
+                    <%- include('ui/form/label.html',{htmlFor:'password',child:'password'}) %>
+                
+                    <%- 
+                        include('ui/form/input-password.html',{
+                            placeholder:'input password',
+                            name:'password',
+                            id:'password',
+                            value:_getInputValue('password'),
+                            error:_isNotNullOrUndefined(_getInputError('password'))
+                        }) 
+                    %>
+                    <% if(_isNotNullOrUndefined(_getInputError('password'))){ %>
+                        <%- include('ui/form/label-alt.html',{
+                            leftChild:_getInputError('password')
+                        }) %>
+                    <% } %>
+                </div>
+                <div class="w-full">
+                    <%- include('ui/form/label.html',{htmlFor:'repeatpassword',child:'repeat password'}) %>    
+                    <%- 
+                        include('ui/form/input-password.html',{
+                            name:'repeatPassword',
+                            id:'repeatPassword',
+                            value:_getInputValue('repeatPassword'),
+                            error:_isNotNullOrUndefined(_getInputError('repeatPassword'))
+                        }) 
+                    %>
+                    <% if(_isNotNullOrUndefined(_getInputError('repeatPassword'))){ %>
+                        <%- include('ui/form/label-alt.html',{
+                            leftChild:_getInputError('repeatPassword')
+                        }) %>
+                    <% } %>
+                </div>
+                <!-- <a href="" class="link w-full text-right link-hover link-primary">Forgot your password?</a> -->
+            </div>
+            
+            
+            
+            <div class="mt-4">
+                <button class="btn btn-primary w-full">Signup</button>
+                <p class="mt-1 text-center">
+                    Already have an account? <a href="/signin" class="link link-hover link-primary">Sign in</a>
+                </p>
+                
+            </div>
+
+          
+
+        </form>
+    </div>  
+
+<%- include('ui/footer.html') %>

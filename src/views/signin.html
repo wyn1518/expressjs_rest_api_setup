@@ -1,0 +1,61 @@
+<%- include('ui/header.html') %>
+
+    <div class="min-h-screen flex items-center justify-center ">
+        <form action="/signin" method="POST" class="p-6 rounded-box bg-base-100 w-lg m-2">
+            <div>
+                <h1 class="text-3xl font-bold">Signin</h1>
+                <p class="text-sm text-base-content/50">please type your login credential to unlock pages.</p>
+            
+            </div>
+            <div class="mt-4">
+                <div class="w-full">
+                    <%- include('ui/form/label.html',{htmlFor:'email',child:'email'}) %>  
+                    <%- 
+                        include('ui/form/input-text.html',{
+                            placeholder:'input email',
+                            name:'email',
+                            id:'email',
+                            value:_getInputValue('email'),
+                            error:_isNotNullOrUndefined(_getInputError('email')),
+                        }) 
+                    %>
+                </div>
+                <div class="w-full">
+                    <%- include('ui/form/label.html',{htmlFor:'password',child:'Password'}) %>
+                    <div>
+                        <%- 
+                            include('ui/form/input-password.html',{
+                                placeholder:'input password',
+                                name:'password',
+                                id:'password',
+                                value:_getInputValue('password'),
+                                error:_isNotNullOrUndefined(_getInputError('password'))
+                            }) 
+                        %>
+                        
+                        <% if(_isNotNullOrUndefined(_getInputError('password'))){ %>
+                                <%- include('ui/form/label-alt.html',{
+                                    leftChild:_getInputError('password')
+                                }) %>
+                        <% } %>
+                    </div>
+                </div>
+                <!-- <a href="" class="link w-full text-right link-hover link-primary">Forgot your password?</a> -->
+            </div>
+            
+            
+            
+            <div class="mt-4">
+                <button class="btn btn-primary w-full">Signin</button>
+                <p class="mt-1 text-center">
+                    Don't have an account? <a href="/signup" class="link link-hover link-primary">Sign up</a>
+                </p>
+                
+            </div>
+
+          
+
+        </form>
+    </div>  
+
+<%- include('ui/footer.html') %>
