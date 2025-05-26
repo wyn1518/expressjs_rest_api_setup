@@ -1,0 +1,16 @@
+<%- include('ui/header.html') %>
+<div class="p-8 min-h-screen bg-base-100 flex items-center justify-center">
+    <div>
+        <h1 class="text-4xl text-center font-bold"> 401 : Unauthorized</h1>
+        <p class="mt-1 text-center"> User must signin first before accessing this page</p>
+        <div class="flex items-center justify-center gap-2 mt-4">
+            <a class="btn btn-primary" href="/signup" class="">I don't have account</a>
+            <a class="btn btn-primary" href="/signin"> Signin</a>
+
+        </div>
+        
+    </div>
+    
+</div>
+
+<%- include('ui/footer.html') %>

@@ -1,117 +1,86 @@
 <%- include('ui/header.html') %>
-
+<%- include('ui/nav-header.html') %>
     <div class="min-h-screen flex items-center justify-center">
-        <form action="/signup" method="POST" class="w-full max-w-sm rounded-box  bg-base-100 p-6 m-2">
+        <form action="/signup" method="POST" class="w-full max-w-sm  m-4">
             <div>
-                <h1 class="text-2xl font-bold">Signup</h1>
-                <p class="text-sm text-base-content/50 lowercase first-letter:uppercase">please type your login credential to unlock pages.</p>
+                <h1 class="text-4xl font-bold ">Signup</h1>
+                <p class="text-sm text-base-content/50  lowercase">please type your login credential to unlock pages.</p>
             
             </div>
             <div class="mt-4">
-                <div class="w-full">
-                    <%- include('ui/form/label.html',{htmlFor:'Displayname',child:'displayname'}) %>  
-                    <%- 
-                        include('ui/form/input-text.html',{
-                            name:'displayname',
-                            id:'displayname',
-                            value:_getInputValue('displayname'),
-                            error:_isNotNullOrUndefined(_getInputError('displayname')),
-                        }) 
-                    %>
-                    <% if(_isNotNullOrUndefined(_getInputError('displayname'))){ %>
-                        <%- include('ui/form/label-alt.html',{
-                            leftChild:_getInputError('displayname')
-                        }) %>
-                    <% } %>
-                </div>
-                <div class="w-full">
-                    <%- include('ui/form/label.html',{htmlFor:'firstname',child:'firstname'}) %>  
-                    <%- 
-                        include('ui/form/input-text.html',{
-                            name:'firstname',
-                            id:'firstname',
-                            value:_getInputValue('firstname'),
-                            error:_isNotNullOrUndefined(_getInputError('firstname')),
-                        }) 
-                    %>
-                    <% if(_isNotNullOrUndefined(_getInputError('firstname'))){ %>
-                        <%- include('ui/form/label-alt.html',{
-                            leftChild:_getInputError('firstname')
-                        }) %>
-                    <% } %>
-                </div>
-                <div class="w-full">
-                    <%- include('ui/form/label.html',{htmlFor:'lastname',child:'lastname'}) %>  
-                    <%- 
-                        include('ui/form/input-text.html',{
-                            name:'lastname',
-                            id:'lastname',
-                            value:_getInputValue('lastname'),
-                            error:_isNotNullOrUndefined(_getInputError('lastname')),
-                        }) 
-                    %>
-                    <% if(_isNotNullOrUndefined(_getInputError('lastname'))){ %>
-                        <%- include('ui/form/label-alt.html',{
-                            leftChild:_getInputError('lastname')
-                        }) %>
-                    <% } %>
-                </div>
-                <div class="w-full">
-                    <%- include('ui/form/label.html',{htmlFor:'email',child:'email'}) %>  
-                    <%- 
-                        include('ui/form/input-text.html',{
-                            placeholder:'input email',
-                            name:'email',
-                            id:'email',
-                            value:_getInputValue('email'),
-                            error:_isNotNullOrUndefined(_getInputError('email')),
-                        }) 
-                    %>
-                    <% if(_isNotNullOrUndefined(_getInputError('email'))){ %>
-                        <%- include('ui/form/label-alt.html',{
-                            leftChild:_getInputError('email')
-                        }) %>
-                    <% } %>
-                </div>
-                <div class="w-full">
-                    <%- include('ui/form/label.html',{htmlFor:'password',child:'password'}) %>
                 
-                    <%- 
-                        include('ui/form/input-password.html',{
-                            placeholder:'input password',
-                            name:'password',
-                            id:'password',
-                            value:_getInputValue('password'),
-                            error:_isNotNullOrUndefined(_getInputError('password'))
-                        }) 
-                    %>
-                    <% if(_isNotNullOrUndefined(_getInputError('password'))){ %>
-                        <%- include('ui/form/label-alt.html',{
-                            leftChild:_getInputError('password')
-                        }) %>
-                    <% } %>
+                
+                <div class="grid grid-cols-2 gap-2">
+                    <fieldset class="fieldset ">
+                        <legend class="fieldset-legend <%= input.firstname.error ? 'text-error':'' %>" for="firstname">Firstname</legend>
+                        <input 
+                            type="text" 
+                            class="input w-full <%= input.firstname.error ? 'input-error':'' %>" 
+                            name="firstname" 
+                            id="firstname" 
+                            value="<%= input.firstname.value %>" 
+                        />
+                        <% if(input.firstname.error){ %>
+                            <p class="fieldset-label text-error"><%= input.firstname.error %></p>
+                        <% } %>
+                    </fieldset>
+                    <fieldset class="fieldset ">
+                        <legend class="fieldset-legend <%= input.lastname.error ? 'text-error':'' %>" for="lastname">lastname</legend>
+                        <input 
+                            type="text" 
+                            class="input w-full <%= input.lastname.error ? 'input-error':'' %>" 
+                            name="lastname" 
+                            id="lastname" 
+                            value="<%= input.lastname.value %>" 
+                        />
+                        <% if(input.lastname.error){ %>
+                            <p class="fieldset-label text-error"><%= input.lastname.error %></p>
+                        <% } %>
+                    </fieldset>
+                    <fieldset class="fieldset p-4 col-span-4 flex flex-wrap gap-4 border border-base-300 rounded-box w-full">
+                        <legend class="fieldset-legend">Gender</legend>
+                        <label class="fieldset-label">
+                            <input type="radio" name="gender" class="radio radio-sm" />
+                            Male
+                        </label>
+                        <label class="fieldset-label">
+                            <input type="radio" name="gender" class="radio radio-sm" />
+                            Female
+                        </label>
+                        
+                        <label class="fieldset-label">
+                            <input type="radio" checked name="gender" class="radio radio-sm" />
+                            Rather not say
+                        </label>
+                    </fieldset>
+                        
                 </div>
-                <div class="w-full">
-                    <%- include('ui/form/label.html',{htmlFor:'repeatpassword',child:'repeat password'}) %>    
-                    <%- 
-                        include('ui/form/input-password.html',{
-                            name:'repeatPassword',
-                            id:'repeatPassword',
-                            value:_getInputValue('repeatPassword'),
-                            error:_isNotNullOrUndefined(_getInputError('repeatPassword'))
-                        }) 
-                    %>
-                    <% if(_isNotNullOrUndefined(_getInputError('repeatPassword'))){ %>
-                        <%- include('ui/form/label-alt.html',{
-                            leftChild:_getInputError('repeatPassword')
-                        }) %>
+                <fieldset class="fieldset ">
+                    <legend class="fieldset-legend <%= input.email.error ? 'text-error':'' %>" for="email">Email</legend>
+                    <input 
+                        type="text" 
+                        class="input w-full <%= input.email.error ? 'input-error':'' %>" 
+                        name="email" 
+                        id="email" 
+                        value="<%= input.email.value %>" 
+                    />
+                    <% if(input.email.error){ %>
+                        <p class="fieldset-label text-error "><%= input.email.error %></p>
                     <% } %>
-                </div>
-                <!-- <a href="" class="link w-full text-right link-hover link-primary">Forgot your password?</a> -->
+                </fieldset>
+                <fieldset class="fieldset " x-data="{show:false}">
+                    <legend class="fieldset-legend <%= input.password.error ? 'text-error':'' %>" for="password">Password</legend>
+                    <input x-bind:type="show?'text':'password'" class="input w-full <%= input.password.error ? 'input-error':'' %>" name="password" id="password" value="<%= input.password.value %>" placeholder="Type here" />
+                    <div class="flex ">
+                        <input x-on:change="show = $el.checked" x-init="$el.checked = show" type="checkbox" class="checkbox checkbox-sm">
+                        <label for="hs-toggle-password-checkbox" class="text-sm text-gray-500 ms-3 dark:text-neutral-400">Show password</label>
+                    </div>
+                    <% if(input.password.error){ %>
+                        <p class="fieldset-label text-error"><%= input.password.error %></p>
+                    <% } %>
+                    
+                </fieldset>
             </div>
-            
-            
-            
             <div class="mt-4">
                 <button class="btn btn-primary w-full">Signup</button>
                 <p class="mt-1 text-center">

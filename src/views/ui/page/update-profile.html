@@ -1,0 +1,137 @@
+<div class="grid gap-12  ">
+    
+    <form action="" class=" w-full" >
+        <h1 class="text-xl font-bold mb-1">Update Profile picture</h1>
+        
+        <fieldset class="fieldset">
+            <legend class="fieldset-legend">Pick a file</legend>
+            <input type="file" class="file-input" />
+            <label class="label">Max size 2MB</label>
+        </fieldset>
+        <div class="flex items-center gap-2 mt-4">
+            <button class="btn  rounded-full bg-base-200"> Cancel</button>
+            <button class="btn btn-neutral rounded-full">Save Changes</button>
+        
+        </div>
+    </form>
+    <form action="/profile/update/basic-information#basic-information" method="POST" id="basic-information" class="">
+        <h1 class="text-xl font-bold mb-1">Update basic information</h1>
+        
+        <fieldset class="fieldset " x-data="{value:'<%= input.email.value || user.email %>'}">
+            <legend class="fieldset-legend <%= input.email.error ? 'text-error':'' %>" for="email">Email</legend>
+            <input 
+                type="text" 
+                class="input w-full <%= input.email.error ? 'input-error':'' %>" 
+                name="email" 
+                id="email" 
+                x-model="value"
+                value="" 
+            />
+            <% if(input.email.error){ %>
+                <p class="fieldset-label text-error first-letter:uppercase"><%= input.email.error %></p>
+            <% } %>
+            
+        </fieldset>
+        
+        
+        <fieldset class="fieldset  ">
+            <legend class="fieldset-legend <%= input.username.error ? 'text-error':'' %>" for="username">Username</legend>
+            <input 
+                type="text" 
+                class="input w-full <%= input.username.error ? 'input-error':'' %>" 
+                name="username" 
+                id="username" 
+                value="<%= input.username.value || user.username %>" 
+            />
+            <% if(input.username.error){ %>
+                <p class="fieldset-label text-error"><%= input.username.error %></p>
+            <% } %>
+        </fieldset>
+        <div class="grid grid-cols-2 gap-2 ">
+            <fieldset class="fieldset  ">
+                <legend class="fieldset-legend <%= input.firstname.error ? 'text-error':'' %>" for="firstname">Firstname</legend>
+                <input 
+                    type="text" 
+                    class="input w-full <%= input.firstname.error ? 'input-error':'' %>" 
+                    name="firstname" 
+                    id="firstname" 
+                    value="<%= input.firstname.value || user.firstname %>" 
+                />
+                <% if(input.firstname.error){ %>
+                    <p class="fieldset-label text-error"><%= input.firstname.error %></p>
+                <% } %>
+            </fieldset>
+            <fieldset class="fieldset   ">
+                <legend class="fieldset-legend <%= input.lastname.error ? 'text-error':'' %>" for="lastname">Lastname</legend>
+                <input 
+                    type="text" 
+                    class="input w-full <%= input.lastname.error ? 'input-error':'' %>" 
+                    name="lastname" 
+                    id="lastname" 
+                    value="<%= input.lastname.value || user.lastname %>" 
+                />
+                <% if(input.lastname.error){ %>
+                    <p class="fieldset-label text-error"><%= input.lastname.error %></p>
+                <% } %>
+            </fieldset>
+            
+           
+                
+        </div>
+        <fieldset class=" fieldset px-4 py-3 flex flex-wrap gap-4 border border-base-300 rounded-box w-full">
+            <legend class="fieldset-legend">Gender</legend>
+            <label class="fieldset-label">
+                <input type="radio" name="gender" class="radio radio-sm" />
+                Male
+            </label>
+            <label class="fieldset-label">
+                <input type="radio" name="gender" class="radio radio-sm" />
+                Female
+            </label>
+            
+            <label class="fieldset-label">
+                <input type="radio" checked name="gender" class="radio radio-sm" />
+                Rather not say
+            </label>
+        </fieldset>
+        <div class="flex items-center gap-2 mt-4">
+            <button class="btn  rounded-full bg-base-200"> Cancel</button>
+            <button class="btn btn-neutral rounded-full">Save Changes</button>
+        
+        </div>
+    </form>
+
+   
+    
+    <form action="">
+        <h1 class="text-xl font-bold mb-1">Update password</h1>
+        <fieldset class="fieldset " x-data="{show:false}">
+            <legend class="fieldset-legend <%= input.oldPassword.error ? 'text-error':'' %>" for="oldPassword">Old password</legend>
+            <input x-bind:type="show?'text':'password'" class="input w-full <%= input.oldPassword.error ? 'input-error':'' %>" name="oldPassword" id="oldPassword" value="<%= input.oldPassword.value %>" placeholder="Type here" />
+            <div class="flex ">
+                <input x-on:change="show = $el.checked" x-init="$el.checked = show" type="checkbox" class="checkbox checkbox-sm">
+                <label for="hs-toggle-password-checkbox" class="text-sm text-gray-500 ms-3 dark:text-neutral-400">Show password</label>
+            </div>
+            <% if(input.oldPassword.error){ %>
+                <p class="fieldset-label text-error"><%= input.oldPassword.error %></p>
+            <% } %>
+            
+        </fieldset>
+           
+        <fieldset class="fieldset " x-data="{show:false}">
+            <legend class="fieldset-legend <%= input.newPassword.error ? 'text-error':'' %>" for="newPassword">New password</legend>
+            <input x-bind:type="show ? 'text':'password'" class="input w-full <%= input.newPassword.error ? 'input-error':'' %>" name="newPassword" id="newPassword" value="<%= input.newPassword.value %>" placeholder="Type here" />
+            <p class="fieldset-label">Must contain minimum of 8 letters, with at least symbol, upper and lowercase letter, and a number.</p>
+            <div class="flex ">
+                <input x-on:change="show = $el.checked" x-init="$el.checked = show" type="checkbox" class="checkbox checkbox-sm">
+                <label for="hs-toggle-password-checkbox" class="text-sm text-gray-500 ms-3 dark:text-neutral-400">Show password</label>
+            </div>
+            
+        </fieldset>
+        <div class="flex items-center gap-2 mt-4">
+            <button class="btn  rounded-full bg-base-200"> Cancel</button>
+            <button class="btn btn-neutral rounded-full">Save Changes</button>
+        
+        </div>
+    </form>
+</div>

@@ -1,12 +1,3 @@
 
-<%
-        
-Object.entries(_get('_assets.javascript')).forEach(function([filePath, included]) {
-    if(included){ %>
-        <%- include('script.html',{src:filePath}) %>
-    <%}
-});
-%>
-
 </body>
 </html>

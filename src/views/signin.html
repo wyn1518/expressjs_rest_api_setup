@@ -1,52 +1,50 @@
 <%- include('ui/header.html') %>
-
+<%- include('ui/nav-header.html') %>
     <div class="min-h-screen flex items-center justify-center ">
-        <form action="/signin" method="POST" class="p-6 rounded-box bg-base-100 w-lg m-2">
+        <form action="/signin" method="POST" class="rounded-box bg-base-100 w-sm ">
             <div>
-                <h1 class="text-3xl font-bold">Signin</h1>
-                <p class="text-sm text-base-content/50">please type your login credential to unlock pages.</p>
+                <h1 class="text-4xl  font-extrabold">Signin</h1>
+                <p class="text-sm  mt-2">please type your login credential to unlock pages.</p>
             
             </div>
             <div class="mt-4">
-                <div class="w-full">
-                    <%- include('ui/form/label.html',{htmlFor:'email',child:'email'}) %>  
-                    <%- 
-                        include('ui/form/input-text.html',{
-                            placeholder:'input email',
-                            name:'email',
-                            id:'email',
-                            value:_getInputValue('email'),
-                            error:_isNotNullOrUndefined(_getInputError('email')),
-                        }) 
-                    %>
-                </div>
-                <div class="w-full">
-                    <%- include('ui/form/label.html',{htmlFor:'password',child:'Password'}) %>
-                    <div>
-                        <%- 
-                            include('ui/form/input-password.html',{
-                                placeholder:'input password',
-                                name:'password',
-                                id:'password',
-                                value:_getInputValue('password'),
-                                error:_isNotNullOrUndefined(_getInputError('password'))
-                            }) 
-                        %>
-                        
-                        <% if(_isNotNullOrUndefined(_getInputError('password'))){ %>
-                                <%- include('ui/form/label-alt.html',{
-                                    leftChild:_getInputError('password')
-                                }) %>
-                        <% } %>
+                <fieldset class="fieldset ">
+                    <legend class="fieldset-legend <%= input.email.error ? 'text-error':'' %>" for="email">Email</legend>
+                    <input 
+                        type="text" 
+                        class="input w-full <%= input.email.error ? 'input-error':'' %> " 
+                        name="email" 
+                        id="email" 
+                        value="<%= input.email.value %>" 
+                    />
+                    <% if(input.email.error){ %>
+                        <p class="fieldset-label text-error"><%= input.email.error %></p>
+                    <% } %>
+                </fieldset>
+                <fieldset class="fieldset " x-data="{show:false}">
+                    <legend class="fieldset-legend <%= input.password.error ? 'text-error':'' %>" for="password">Password</legend>
+                    <input x-bind:type="show?'text':'password'" class="input w-full <%= input.password.error ? 'input-error':'' %>" name="password" id="password" value="<%= input.password.value %>" placeholder="Type here" />
+                    <div class="flex ">
+                        <input x-on:change="show = $el.checked" type="checkbox" class="checkbox checkbox-sm">
+                        <label for="hs-toggle-password-checkbox" class="text-sm text-gray-500 ms-3 dark:text-neutral-400">Show password</label>
                     </div>
-                </div>
+                    <% if(input.password.error){ %>
+                        <p class="fieldset-label text-error"><%= input.password.error %></p>
+                    <% } %>
+                    
+                </fieldset>
+                   
+                
                 <!-- <a href="" class="link w-full text-right link-hover link-primary">Forgot your password?</a> -->
             </div>
             
             
             
-            <div class="mt-4">
-                <button class="btn btn-primary w-full">Signin</button>
+            <div class="mt-2">
+                <div class="flex items-center justify-between">   
+                    <a href="/signup" class="link link-hover link-primary">forgot password?</a>
+                    <button class="btn btn-primary" >Signin</button>
+                </div>
                 <p class="mt-1 text-center">
                     Don't have an account? <a href="/signup" class="link link-hover link-primary">Sign up</a>
                 </p>

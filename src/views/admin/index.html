@@ -1,62 +1,129 @@
 <%- include('../ui/header.html') %>
-<button type="button" class="btn btn-text max-sm:btn-square sm:hidden" aria-haspopup="dialog" aria-expanded="false" aria-controls="default-sidebar" data-overlay="#default-sidebar" >
-    <span class="icon-[tabler--menu-2] size-5"></span>
-</button>
-<% _addAsset('javascript','javascript/overlay.js') %>
-<% _addAsset('javascript','javascript/collapse.js') %>
-<aside id="default-sidebar" class="overlay sm:shadow-none overlay-open:translate-x-0 drawer drawer-start hidden max-w-64 sm:absolute sm:z-0 sm:flex sm:translate-x-0" role="dialog" tabindex="-1" >
-    <div class="drawer-body px-2 pt-4">
-      <ul class="menu p-0">
-        <li>
-          <a href="#">
-            <span class="icon-[tabler--layout-dashboard] size-5"></span>
-            Home
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon-[tabler--user] size-5"></span>
-            Account
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon-[tabler--message] size-5"></span>
-            Notifications
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon-[tabler--mail] size-5"></span>
-            Email
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon-[tabler--calendar] size-5"></span>
-            Calendar
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon-[tabler--shopping-bag] size-5"></span>
-            Product
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon-[tabler--login] size-5"></span>
-            Sign In
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon-[tabler--logout-2] size-5"></span>
-            Sign Out
-          </a>
-        </li>
-      </ul>
-    </div>
-  </aside>
 
-  <%- include('../ui/footer.html') %>
+<div class="max-w-7xl mx-auto">
+    <div class="drawer lg:drawer-open">
+        <input id="admin-main-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content  ">
+            <%- include('../ui/admin/nav-header.html') %>
+            <div class="">
+                <div class="overflow-x-auto">
+                    <table class="table table-sm">
+                      <!-- head -->
+                      <thead>
+                        <tr>
+                          <th>
+                            <label class="flex gap-3 item-center">
+                                <input type="checkbox" class="checkbox checkbox-sm" />
+                                Name
+                            </label>
+                          </th>
+                          <th>username</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- row 1 -->
+                        <tr>
+                          <td>
+                            <div class="flex  gap-3">
+                                <label>
+                                    <input type="checkbox" class="checkbox checkbox-sm" />
+                                </label>
+                                <!-- <div class="avatar">
+                                    <div class="mask mask-squircle h-12 w-12">
+                                    <img
+                                        src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                                        alt="Avatar Tailwind CSS Component" />
+                                    </div>
+                                </div> -->
+                                <div>
+                                    <div class="font-bold ">Hart Hagerty</div>
+                                    <div class="badge badge-sm badge-soft badge-error">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                        </svg>
+                                          
+                                        xxx@gmail.com
+                                    </div>
+                                </div>
+                            </div>
+                          </td>
+                          <td>
+                            Zemlak, Daniel and Leannon
+                            <br />
+                            <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                          </td>
+                        </tr>
+                        <tr>
+                            <td>
+                              <div class="flex  gap-3">
+                                  <label>
+                                      <input type="checkbox" class="checkbox checkbox-sm" />
+                                  </label>
+                                  <!-- <div class="avatar">
+                                      <div class="mask mask-squircle h-12 w-12">
+                                      <img
+                                          src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                                          alt="Avatar Tailwind CSS Component" />
+                                      </div>
+                                  </div> -->
+                                  <div>
+                                      <div class="font-bold ">Hart Hagerty</div>
+                                      <div class="badge badge-sm badge-success badge-soft">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                          </svg>
+                                          
+                                            
+                                          xxx@gmail.com
+                                      </div>
+                                  </div>
+                              </div>
+                            </td>
+                            <td>
+                              Zemlak, Daniel and Leannon
+                              <br />
+                              <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                            </td>
+                          </tr>
+                         
+                    </table>
+                  </div>
+                <% if(typeof content !== 'undefined'){ %>
+                    <%- include(content) %>
+                <% } %>
+            </div>
+            
+        </div>
+        <div class="drawer-side border-r border-r-base-200  ">
+            <label for="admin-main-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+            <ul class="menu  text-base-content min-h-full w-60 p-4 bg-base-100">
+            <!-- Sidebar content here -->
+                <li>
+                    <a href="/admin">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
+                        </svg>
+                        Dashboard                      
+                    </a>
+                </li>
+                <li>
+                    <details open>
+                        <summary>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                            </svg>
+                            Users                    
+                        </summary>
+                        <ul>
+                            <li><a href="/admin/users">Users</a></li>
+                            <li><a href="/admin/roles">Roles</a></li>
+                            <li><a href="/admin/roles">Permissions</a></li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<%- include('../ui/footer.html') %>
